@@ -21,7 +21,6 @@ df['Campaign_Name'] = df['Campaign_Name'].str.strip().str.title()
 df['Channel'] = df['Channel'].str.strip().str.title()
 df['Device'] = df['Device'].str.strip().str.title()
 df['Year'] = df['Date'].dt.year
-df['Month'] = df['Date'].dt.month
 df['Month_Number'] = df['Date'].dt.month
 df['Month_Name'] = df['Date'].dt.strftime('%b')
 df['Day'] = df['Date'].dt.day
@@ -45,4 +44,4 @@ df['Profit_Margin'] = np.where(df['Revenue'] > 0, df['Profit'] / df['Revenue'], 
 
 print(df.head())
 
-df.to_excel("marketing_cleaned.xlsx", index=False)
+df.to_excel("Campaign_Data.xlsx", index=False)
