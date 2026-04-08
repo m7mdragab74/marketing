@@ -27,16 +27,16 @@ df['Day'] = df['Date'].dt.day
 
 #metrics
 # CTR
-df['CTR'] = df['Clicks'] / df['Impressions']
+df['CTR'] = np.where(df['Impressions'] > 0, df['Clicks'] / df['Impressions'], 0)
 
 # Conversion Rate
-df['Conversion_Rate'] = df['Conversions'] / df['Clicks']
+df['Conversion_Rate'] = np.where(df['Clicks'] > 0, df['Conversions'] / df['Clicks'], 0)
 
 # CPA (Cost per Acquisition)
-df['CPA'] = df['Spend'] / df['Conversions']
+df['CPA'] = np.where(df['Conversions'] > 0, df['Spend'] / df['Conversions'], 0)
 
 # ROAS (Return on Ad Spend)
-df['ROAS'] = df['Revenue'] / df['Spend']
+df['ROAS'] = np.where(df['Spend'] > 0, df['Revenue'] / df['Spend'], 0)
 
 #Profit / Profit Margin
 df['Profit'] = df['Revenue'] - df['Spend']
