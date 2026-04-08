@@ -10,5 +10,7 @@ df.info()
 df.isnull().sum()
 
 #data cleaning
-df['Status'] = df['Status'].fillna('Not Contacted')
+df['Status'] = df['Status'].fillna('Unknown')
 print(df.isnull().sum())
+
+df.to_excel("Leads.xlsx", index=False)

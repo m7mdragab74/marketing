@@ -8,3 +8,5 @@ df = pd.read_excel("marketing_dataset.xlsx", sheet_name="Campaigns")
 df.head()
 df.info()
 df.isnull().sum()
+
+df.to_excel("Campaigns.xlsx", index=False)
