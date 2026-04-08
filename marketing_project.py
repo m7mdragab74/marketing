@@ -22,6 +22,7 @@ df['Channel'] = df['Channel'].str.strip().str.title()
 df['Device'] = df['Device'].str.strip().str.title()
 df['Year'] = df['Date'].dt.year
 df['Month'] = df['Date'].dt.month
+df['Month_Number'] = df['Date'].dt.month
 df['Month_Name'] = df['Date'].dt.strftime('%b')
 df['Day'] = df['Date'].dt.day
 
@@ -40,7 +41,7 @@ df['ROAS'] = np.where(df['Spend'] > 0, df['Revenue'] / df['Spend'], 0)
 
 #Profit / Profit Margin
 df['Profit'] = df['Revenue'] - df['Spend']
-df['Profit_Margin'] = df['Profit'] / df['Revenue']
+df['Profit_Margin'] = np.where(df['Revenue'] > 0, df['Profit'] / df['Revenue'], 0)
 
 print(df.head())
 
