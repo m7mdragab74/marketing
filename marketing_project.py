@@ -11,8 +11,19 @@ df.isnull().sum()
 
 #data cleaning 
 df['Region'] = df['Region'].fillna('Unknown')
-df['Impressions'] = df['Impressions'].fillna(df['Impressions'].mean())
+df['Impressions'] = df['Impressions'].fillna(df['Impressions'].median())
+df['Impressions'] = df['Impressions'].astype(int)
+df.drop_duplicates(inplace=True)
 print(df.isnull().sum())
+
+#data transformation
+df['Campaign_Name'] = df['Campaign_Name'].str.strip().str.title()
+df['Channel'] = df['Channel'].str.strip().str.title()
+df['Device'] = df['Device'].str.strip().str.title()
+df['Year'] = df['Date'].dt.year
+df['Month'] = df['Date'].dt.month
+df['Month_Name'] = df['Date'].dt.strftime('%b')
+df['Day'] = df['Date'].dt.day
 
 #metrics
 # CTR
@@ -32,3 +43,5 @@ df['Profit'] = df['Revenue'] - df['Spend']
 df['Profit_Margin'] = df['Profit'] / df['Revenue']
 
 print(df.head())
+
+df.to_excel("marketing_cleaned.xlsx", index=False)
